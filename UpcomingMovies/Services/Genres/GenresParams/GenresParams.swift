@@ -1,5 +1,5 @@
 //
-//  MoviesUpcomingParams.swift
+//  GenresParams.swift
 //  UpcomingMovies
 //
 //  Created by Lech H. Conde on 06/02/2019.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct MoviesUpcomingParams: Encodable {
+struct GenresParams: Encodable {
+    /// Pass a ISO 639-1 value to display translated
+    /// data for the fields that support it; default: en-US.
     var language: String?
-    var page: Int = 1
-    var region: String?
 }

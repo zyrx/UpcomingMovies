@@ -17,8 +17,8 @@ protocol ServiceHandler {
 extension ServiceHandler {
     func didFailWith(_ error: Error) {
         var localizedDescription = error.localizedDescription
-        if let error = error as? NetworkError, case .emptyResponse = error {
-            localizedDescription = "Empty response"
+        if let error = error as? NetworkError {
+            localizedDescription = error.localizedDescription
         }
         print("Network Error: \(localizedDescription)")
     }

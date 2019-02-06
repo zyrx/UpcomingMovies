@@ -1,5 +1,5 @@
 //
-//  MoviesTableViewDataManager.swift
+//  GenresResponse.swift
 //  UpcomingMovies
 //
 //  Created by Lech H. Conde on 06/02/2019.
@@ -7,3 +7,7 @@
 //
 
 import Foundation
+
+struct GenresResponse: Codable {
+    var genres: [Genre]
+}
