@@ -14,20 +14,21 @@ protocol MovieDetailsViewable {
 
 class MovieDetailsViewModel: MovieDetailsViewable {
     
-    let movieDetailsService: MovieDetailsService
+    var movieDetailsService: MovieDetailsService
     let movie: Box<Movie?> = Box(nil)
     
     // MARK: - Initialization
-    init(service: MovieDetailsService) {
-        movieDetailsService = service
+    init(movieDetailsService: MovieDetailsService) {
+        self.movieDetailsService = movieDetailsService
     }
     
     convenience init() {
-        self.init(service: MovieDetailsService())
+        self.init(movieDetailsService: MovieDetailsService(endpoint: MoviesEndpoint.details))
     }
     
     func fetchMovieDetails(for id: Int) {
-        movieDetailsService.getMovieDetails(id: id)
+        movieDetailsService.params = MovieDetailsParams(movieId: id)
+        getData(from: movieDetailsService)
     }
 }
 

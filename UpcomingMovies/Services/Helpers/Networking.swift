@@ -10,17 +10,21 @@ import Foundation
 
 enum NetworkError: Error {
     case emptyResponse
+    case invalidData(String)
+    
+    var localizedDescription: String {
+        switch self {
+        case .emptyResponse:
+            return "Empty response"
+        case .invalidData(let description):
+            return description
+        }
+    }
 }
 
 enum Result<T> {
     case success(T)
     case failure(Error)
-}
-
-protocol Gettable {
-    associatedtype DataType
-    var endpoint: Endpoint & BaseURL { get }
-    func get(_ completion: @escaping (Result<DataType>) -> Void)
 }
 
 enum HTTPMethod {

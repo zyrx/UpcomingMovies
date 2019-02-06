@@ -19,7 +19,7 @@ struct MultiSearchParams {
 struct MultiSearchService: Gettable {
     
     let endpoint: BaseURL & Endpoint
-    var params: [String: Any]?
+    var params: Encodable?
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {

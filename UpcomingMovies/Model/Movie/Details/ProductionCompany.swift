@@ -10,7 +10,7 @@ import Foundation
 
 struct ProductionCompany: Codable {
     var id: Int
-    var logoPath: String
+    var logoPath: String?
     var name: String
     var originCountry: String
     

@@ -17,8 +17,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let windowFrame = UIScreen.main.bounds
         
+        
+        let rootViewController = MoviesViewController()
+        let rootNavigationController = UINavigationController(rootViewController: rootViewController)
+        
         window = UIWindow(frame: windowFrame)
-        window?.rootViewController = MoviesViewController()
+        window?.rootViewController = rootNavigationController
         window?.makeKeyAndVisible()
         
         return true

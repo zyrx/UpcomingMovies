@@ -8,10 +8,14 @@
 
 import Foundation
 
+protocol MovieDataBaseServiceHandler: ServiceHandler {
+    func didReceiveData(_ data: Array<String>)
+}
+
 struct MovieDataBaseService: Gettable {
     
     let endpoint: BaseURL & Endpoint
-    var params: [String: Any]?
+    var params: Encodable?
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
