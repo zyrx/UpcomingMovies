@@ -10,6 +10,10 @@ import UIKit
 import SnapKit
 
 class MoviesView: UIView {
+    
+    public lazy var searchBar = UISearchBar()
+    //public lazy var tableView = MoviesTableView()
+    public lazy var collectionView = MoviesCollectionView()
 
     // MARK: - Initialization
     public convenience init() {
@@ -29,5 +33,26 @@ class MoviesView: UIView {
     // MARK: - Configuration
     private func setupView() {
         backgroundColor = .white
+        
+        // Search Bar View
+        addSubview(searchBar)
+        searchBar.snp.makeConstraints { make in
+            make.top.equalTo(snp_topMargin)
+            make.leading.trailing.equalToSuperview()
+        }
+        
+        // Table View
+        addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+        
+//        // Table View
+//        addSubview(tableView)
+//        tableView.snp.makeConstraints { make in
+//            make.top.equalTo(searchBar.snp.bottom)
+//            make.leading.trailing.bottom.equalToSuperview()
+//        }
     }
 }

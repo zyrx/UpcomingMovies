@@ -8,44 +8,18 @@
 
 import Foundation
 
+protocol MoviesServiceHandler: ServiceHandler {
+    func didReceiveData(_ data: MoviesUpcomingResponse)
+}
+
 struct MoviesService: Gettable {
+    typealias DataType = MoviesUpcomingResponse
     
     let endpoint: BaseURL & Endpoint
-    var params: MoviesUpcomingParams?
+    var params: Encodable? = MoviesUpcomingParams()
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
         self.endpoint = endpoint
-    }
-    
-    init() {
-        self.init(endpoint: MoviesEndpoint.upcoming)
-    }
-    
-    func get(_ completion: @escaping (Result<[Movie]>) -> Void) {
-        guard let url = endpoint.serviceUrl else {
-            fatalError()
-        }
-        
-        var request = URLRequest(url: url)
-        
-        if let params = params, var dictionary = params.dictionary  {
-            dictionary["api_key"] = endpoint.apiKey
-            request.httpBody = try? JSONSerialization.data(withJSONObject: dictionary, options: .prettyPrinted)
-        }
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            let decoder = JSONDecoder()
-            guard let data = data, let dataResponse = try? decoder.decode([Movie].self, from: data) else {
-                completion(.failure(NetworkError.emptyResponse))
-                return
-            }
-            completion(.success(dataResponse))
-        }
-        task.resume()
     }
 }

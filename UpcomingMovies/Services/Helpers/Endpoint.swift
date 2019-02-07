@@ -23,7 +23,7 @@ protocol MovieDatabaseApiEndpoint: Endpoint, BaseURL { }
 
 extension MovieDatabaseApiEndpoint {
     var baseUrl: String {
-        return "https://api.themoviedb.org"
+        return "https://api.themoviedb.org/3"
     }
     
     var apiKey: String {

@@ -9,33 +9,37 @@
 import Foundation
 
 struct Movie: Codable {
+    // Movie Details
     var adult: Bool
-    var backdropPath: String
+    var backdropPath: String?
     var belongsToCollection: String?
-    var budget: Int
-    var genres: [Genre]
-    var homepage: String
+    var budget: Int?
+    var genres: [Genre]?
+    var homepage: String?
     var id: Int
-    var imdbId: String
+    var imdbId: String?
     var originalLanguage: String
     var originalTitle: String
-    var overview: String
+    var overview: String?
     var popularity: Double
-    var posterPath: String
-    var productionCompanies: [ProductionCompany]
-    var productionCountries: [ProductionCountry]
+    var posterPath: String?
+    var productionCompanies: [ProductionCompany]?
+    var productionCountries: [ProductionCountry]?
     var releaseDate: String
-    var revenue: Int
-    var runtime: Int
-    var spokenLanguages: [SpokenLanguage]
-    var status: String
-    var tagline: String
+    var revenue: Int?
+    var runtime: Int?
+    var spokenLanguages: [SpokenLanguage]?
+    var status: String?
+    var tagline: String?
     var title: String
     var video: Bool
     var voteAverage: Double
     var voteCount: Int
+    // Upcoming Movies
+    var genreIds: [Int]?
     
     enum CodingKeys: String, CodingKey {
+        // Movie Details
         case adult
         case backdropPath = "backdrop_path"
         case belongsToCollection = "belongs_to_collection"
@@ -61,6 +65,8 @@ struct Movie: Codable {
         case video
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+        // Upcoming Movies
+        case genreIds = "genre_ids"
     }
 }
 

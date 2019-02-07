@@ -6,4 +6,13 @@
 //  Copyright © 2019 Lech H. Conde. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+// MARK: UITableViewCell
+public extension UITableView {
+    @discardableResult
+    final public func register<T: UITableViewCell>(withClass cellClass: T.Type) -> UITableView {
+        register(cellClass, forCellReuseIdentifier: cellClass.identifier)
+        return self
+    }
+}
