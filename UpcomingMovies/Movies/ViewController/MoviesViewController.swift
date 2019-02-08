@@ -10,6 +10,7 @@ import UIKit
 
 class MoviesViewController: BaseViewController<MoviesView> {
     
+    private let configuration: Configurable
     private let moviesViewModel: MoviesViewable
     private let genresViewModel: GenresViewable
 
@@ -17,26 +18,29 @@ class MoviesViewController: BaseViewController<MoviesView> {
     private let viewDataManager: MoviesCollectionViewDataManager
     
     // MARK: - Initialization
-    required init(moviesViewModel: MoviesViewable,
+    required init(configuration: Configurable,
+                  moviesViewModel: MoviesViewable,
                   genresViewModel: GenresViewable,
                   viewDataManager: MoviesCollectionViewDataManager) {
+        self.configuration = configuration
         self.moviesViewModel = moviesViewModel
         self.genresViewModel = genresViewModel
         self.viewDataManager = viewDataManager
         super.init()
     }
     
-    override convenience init() {
-        self.init(moviesViewModel: MoviesViewModel(),
+    convenience init(with configuration: Configurable) {
+        self.init(configuration: configuration,
+                  moviesViewModel: MoviesViewModel(),
                   genresViewModel: GenresViewModel(),
-                  viewDataManager: MoviesCollectionViewDataManager())
+                  viewDataManager: MoviesCollectionViewDataManager(with: configuration))
     }
     
     // MARK: - Setup & Configuration
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Upcomming Movies"
-        setupTableView()
+        setupView()
         bindViewModel()
         genresViewModel.fetchGenres()
         moviesViewModel.fetchMovies(page: 2)
@@ -58,7 +62,7 @@ class MoviesViewController: BaseViewController<MoviesView> {
         }
     }
     
-    private func setupTableView() {
+    private func setupView() {
         viewDataManager.delegate = self
         viewDataManager.setup(collectionView: collectionView)
     }

@@ -10,8 +10,12 @@ import UIKit
 import SnapKit
 
 class MoviesView: UIView {
+    public lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.placeholder = "Search..."
+        return searchBar
+    }()
     
-    public lazy var searchBar = UISearchBar()
     //public lazy var tableView = MoviesTableView()
     public lazy var collectionView = MoviesCollectionView()
 
@@ -41,18 +45,13 @@ class MoviesView: UIView {
             make.leading.trailing.equalToSuperview()
         }
         
-        // Table View
+        // Collection View
+        let contentInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        collectionView.contentInset = contentInset
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
             make.leading.trailing.bottom.equalToSuperview()
         }
-        
-//        // Table View
-//        addSubview(tableView)
-//        tableView.snp.makeConstraints { make in
-//            make.top.equalTo(searchBar.snp.bottom)
-//            make.leading.trailing.bottom.equalToSuperview()
-//        }
     }
 }
