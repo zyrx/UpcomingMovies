@@ -8,7 +8,12 @@
 
 import Foundation
 
+protocol ConfigurationServiceHandler: ServiceHandler {
+    func didReceiveData(_ data: ConfigurationResponse)
+}
+
 struct ConfigurationService: Gettable {
+    typealias DataType = ConfigurationResponse
     
     let endpoint: BaseURL & Endpoint
     var params: Encodable?
@@ -16,13 +21,5 @@ struct ConfigurationService: Gettable {
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
         self.endpoint = endpoint
-    }
-    
-    init() {
-        self.init(endpoint: ConfigurationEndpoint.apiConfiguration)
-    }
-    
-    func get(_ completion: @escaping (Result<Configuration>) -> Void) {
-        // TODO: Get Method implementation
     }
 }

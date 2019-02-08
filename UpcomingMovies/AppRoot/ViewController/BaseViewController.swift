@@ -16,6 +16,7 @@ class BaseViewController<View: UIView>: UIViewController {
     }
     
     override open func loadView() {
+        mainView.backgroundColor = mainView.backgroundColor ?? .white
         view = mainView
     }
     

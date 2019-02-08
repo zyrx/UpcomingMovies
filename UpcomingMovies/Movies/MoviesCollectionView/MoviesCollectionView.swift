@@ -12,7 +12,7 @@ class MoviesCollectionView: UICollectionView {
     
     // MARK: - Initialization
     public convenience init() {
-        self.init(frame: .zero, collectionViewLayout: UICollectionViewLayout())
+        self.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
         setupView()
     }
     
