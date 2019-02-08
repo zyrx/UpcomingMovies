@@ -27,7 +27,7 @@ class MoviesTableViewDataManager: NSObject {
     
     public func setup(tableView: UITableView) {
         self.tableView = tableView
-        tableView.register(withClass: MoviesTableViewCell.self)
+        tableView.register(cell: MoviesTableViewCell.self)
         tableView.rowHeight = UITableView.automaticDimension
         tableView.dataSource = self
         tableView.delegate = self

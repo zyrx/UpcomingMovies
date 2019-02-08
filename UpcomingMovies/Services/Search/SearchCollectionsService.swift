@@ -16,21 +16,13 @@ struct SearchCollectionsParams {
 }
 
 struct SearchCollectionsService: Gettable {
+    typealias DataType = SearchCollectionsResult
     
     let endpoint: BaseURL & Endpoint
-    var params: Encodable?
+    var params: Params = Params()
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
         self.endpoint = endpoint
-    }
-    
-    init() {
-        self.init(endpoint: SearchEndpoint.collections)
-    }
-    
-    
-    func get(_ completion: @escaping (Result<SearchCollections>) -> Void) {
-        // TODO: Get Method implementation
     }
 }

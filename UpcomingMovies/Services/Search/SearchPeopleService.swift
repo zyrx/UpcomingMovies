@@ -18,20 +18,13 @@ struct SearchPeopleParams {
 }
 
 struct SearchPeopleService: Gettable {
+    typealias DataType = SearchPeopleResult
     
     let endpoint: BaseURL & Endpoint
-    var params: Encodable?
+    var params: Params = Params()
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
         self.endpoint = endpoint
-    }
-    
-    init() {
-        self.init(endpoint: SearchEndpoint.people)
-    }
-    
-    func get(_ completion: @escaping (Result<SearchPeople>) -> Void) {
-        // TODO: Get Method implementation
     }
 }

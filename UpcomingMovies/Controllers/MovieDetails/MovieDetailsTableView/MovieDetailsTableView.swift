@@ -1,23 +1,24 @@
 //
-//  MovieDetailsView.swift
+//  MovieDetailsTableView.swift
 //  UpcomingMovies
 //
-//  Created by Lech H. Conde on 04/02/2019.
+//  Created by Lech H. Conde on 09/02/2019.
 //  Copyright © 2019 Lech H. Conde. All rights reserved.
 //  GNU General Public License version 3 or later; see LICENSE or <https://www.gnu.org/licenses/>.
 //
 
 import UIKit
 
-class MovieDetailsView: UIView {
-
+class MovieDetailsTableView: UITableView {
+    
     // MARK: - Initialization
     public convenience init() {
-        self.init(frame: .zero)
+        self.init(frame: .zero, style: .plain)
+        setupView()
     }
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(frame: CGRect, style: UITableView.Style) {
+        super.init(frame: frame, style: style)
         setupView()
     }
     
@@ -26,7 +27,6 @@ class MovieDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Configuration
     private func setupView() {
         backgroundColor = .white
     }
