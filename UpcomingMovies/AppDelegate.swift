@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        let rootViewController = RootViewController()
         let windowFrame = UIScreen.main.bounds
         
         
@@ -22,10 +23,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootNavigationController = UINavigationController(rootViewController: rootViewController)
         
         window = UIWindow(frame: windowFrame)
-        window?.rootViewController = rootNavigationController
+        window?.rootViewController = rootViewController
         window?.makeKeyAndVisible()
         
         return true
     }
 }
-
