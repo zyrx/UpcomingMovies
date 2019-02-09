@@ -11,7 +11,7 @@ import Foundation
 
 protocol MoviesViewable {
     var resultsPerPage: Int { get }
-    var movies: Box<[Movie]> { get }
+    var moviesUpcomingResponse: Box<MoviesUpcomingResponse?> { get }
     func fetchMovies(page: Int)
 }
 
@@ -19,7 +19,7 @@ class MoviesViewModel: MoviesViewable {
     private var moviesService: MoviesService
     public var resultsPerPage: Int = 20
     public var params: MoviesUpcomingParams
-    public let movies: Box<[Movie]> = Box([])
+    public let moviesUpcomingResponse: Box<MoviesUpcomingResponse?> = Box(nil)
     
     // MARK: - Initialization
     init(moviesService: MoviesService,
@@ -43,9 +43,6 @@ class MoviesViewModel: MoviesViewable {
 // MARK: - MoviesServiceHandler
 extension MoviesViewModel: MoviesServiceHandler {
     func didReceiveData(_ data: MoviesUpcomingResponse) {
-        guard let results = data.results else {
-            return movies.value = []
-        }
-        movies.value = results
+        moviesUpcomingResponse.value = data
     }
 }

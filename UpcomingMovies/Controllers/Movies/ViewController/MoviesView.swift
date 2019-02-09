@@ -14,6 +14,9 @@ class MoviesView: UIView {
     public lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.placeholder = "Search..."
+        if let textField = searchBar.value(forKey: "_searchField") as? UITextField {
+            textField.clearButtonMode = .never
+        }
         return searchBar
     }()
     

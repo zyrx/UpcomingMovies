@@ -9,6 +9,10 @@
 
 import Foundation
 
+protocol MovieDetailsServiceHandler: ServiceHandler {
+    func didReceiveData(_ data: Movie)
+}
+
 struct MovieDetailsService: Gettable {    
     typealias DataType = MovieDetailsResponse
     

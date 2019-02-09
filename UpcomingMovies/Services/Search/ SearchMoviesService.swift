@@ -9,18 +9,12 @@
 
 import Foundation
 
-struct SearchMoviesParams {
-    var language: String?
-    var query: String
-    var page: Int?
-    var includeAdult: Bool?
-    var region: String?
-    var year: Int?
-    var primaryReleaseYear: Int?
+protocol SearchMoviesServiceHandler: ServiceHandler {
+    func didReceiveData(_ data: SearchMoviesResponse)
 }
 
 struct SearchMoviesService: Gettable {
-    typealias DataType = SearchMoviesResult
+    typealias DataType = SearchMoviesResponse
     
     let endpoint: BaseURL & Endpoint
     var params: Params = Params()

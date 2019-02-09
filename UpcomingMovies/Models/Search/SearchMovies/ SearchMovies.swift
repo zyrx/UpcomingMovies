@@ -11,7 +11,7 @@ import Foundation
 
 struct SearchMovies: Search {
     var page: Int
-    var results: [SearchMoviesResult]
+    var results: [Movie]
     var totalResults: Int
     var totalPages: Int
     
