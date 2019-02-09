@@ -48,6 +48,11 @@ class MoviesTableViewDataManager: NSObject {
             self?.tableView?.reloadData()
         }
     }
+    
+    public func getModel(for indexPath: IndexPath) -> Movie? {
+        guard moviesModel.indices.contains(indexPath.row) else { return nil }
+        return moviesModel[indexPath.row]
+    }
 }
 
 // MARK: - UITableViewDataSource

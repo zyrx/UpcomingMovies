@@ -43,7 +43,7 @@ class MoviesViewController: BaseViewController<MoviesView> {
         setupView()
         bindViewModel()
         genresViewModel.fetchGenres()
-        moviesViewModel.fetchMovies(page: 2)
+        moviesViewModel.fetchMovies(page: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +59,7 @@ class MoviesViewController: BaseViewController<MoviesView> {
         
         moviesViewModel.movies.bind { [weak self] movies in
             guard let self = self else { return }
-            self.viewDataManager.setMoviesModel(movies)
+            self.viewDataManager.updateMoviesModel(with: movies)
         }
     }
     
@@ -71,11 +71,8 @@ class MoviesViewController: BaseViewController<MoviesView> {
 
 // MARK: - MoviesSearchResultsDelegate
 extension MoviesViewController: MoviesCollectionViewDelegate {
-    func collectionView(didSelectItemAt indexPath: IndexPath) {
-        let movies = moviesViewModel.movies.value
-        guard movies.indices.contains(indexPath.row) else { return }
-        
-        let movie = movies[indexPath.row]
+    func moviesCollectionView(didSelectItemAt indexPath: IndexPath) {
+        guard let movie = viewDataManager.getModel(for: indexPath) else { return }
         let movieDetailsViewController = MovieDetailsViewController(for: movie, with: configuration)
         title = ""
         navigationController?.pushViewController(movieDetailsViewController, animated: true)
@@ -86,6 +83,9 @@ extension MoviesViewController: MoviesCollectionViewDelegate {
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        // Do something
+        if (scrollView.contentOffset.y + 1) >= (scrollView.contentSize.height - scrollView.frame.size.height) {
+            let currentPage: Int = viewDataManager.totalItems / moviesViewModel.resultsPerPage
+            moviesViewModel.fetchMovies(page: currentPage + 1)
+        }
     }
 }
