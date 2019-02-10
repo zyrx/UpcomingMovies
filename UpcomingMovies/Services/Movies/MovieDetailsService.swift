@@ -13,15 +13,10 @@ struct MovieDetailsService: Gettable {
     typealias DataType = MovieDetailsResponse
     
     let endpoint: BaseURL & Endpoint
-    var params: Encodable? = MovieDetailsParams(movieId: 0)
+    var params: Params = Params(path: MovieDetailsParams(movieId: 0))
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
         self.endpoint = endpoint
-    }
-    
-    func getMovieDetails(id: Int) {
-        let path = String(format: "/movie/%@", id) // {movie_id}
-        print(path)
     }
 }

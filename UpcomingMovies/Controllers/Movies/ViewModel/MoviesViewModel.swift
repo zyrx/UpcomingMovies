@@ -35,7 +35,7 @@ class MoviesViewModel: MoviesViewable {
     
     func fetchMovies(page: Int) {
         params.page = page > 0 ? page : 1
-        moviesService.params = params
+        moviesService.params.query = params
         getData(from: moviesService)
     }
 }

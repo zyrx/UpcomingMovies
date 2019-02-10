@@ -20,16 +20,22 @@ extension URLRequest {
         self.init(url: url)
     }
     
-    init?(with endpoint: Endpoint & BaseURL, params: [String: Any]? = nil) {
-        guard let url = endpoint.serviceUrl else { return nil }
-        var params = params ?? [String: Any]()
-        params["api_key"] = endpoint.apiKey
-        if case .get = endpoint.method {
-            self.init(url: url, queryItems: params)
-        } else {
-            self.init(url: url)
-            httpBody = try? JSONSerialization.data(withJSONObject: params, options: .prettyPrinted)
+    init?(with endpoint: Endpoint & BaseURL, params:Params) {
+        guard let url = endpoint.serviceUrl(with: params.path) else {
+            return nil
         }
+        var query = params.query?.dictionary ?? [String: Any]()
+        query["api_key"] = endpoint.apiKey
+        self.init(url: url, queryItems: query)
+        
+        if let header = params.header?.dictionary as? [String: String] {
+            self.allHTTPHeaderFields = header
+        }
+        
+        if let body = params.body?.dictionary {
+            httpBody = try? JSONSerialization.data(withJSONObject: body, options: .prettyPrinted)
+        }
+        
         httpMethod = endpoint.method.name
     }
 }

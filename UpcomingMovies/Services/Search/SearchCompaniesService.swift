@@ -15,20 +15,13 @@ struct SearchCompaniesParams {
 }
 
 struct SearchCompaniesService: Gettable {
+    typealias DataType = SearchCompaniesResult
     
     let endpoint: BaseURL & Endpoint
-    var params: Encodable?
+    var params: Params = Params()
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
         self.endpoint = endpoint
-    }
-    
-    init() {
-        self.init(endpoint: SearchEndpoint.companies)
-    }
-    
-    func get(_ completion: @escaping (Result<SearchCompanies>) -> Void) {
-        // TODO: Get Method implementation
     }
 }

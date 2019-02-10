@@ -12,13 +12,13 @@ import Foundation
 protocol Gettable {
     associatedtype DataType
     var endpoint: Endpoint & BaseURL { get }
-    var params: Encodable? { get set }
+    var params: Params { get set }
     func get(_ completion: @escaping (Result<DataType>) -> Void)
 }
 
 extension Gettable where Self.DataType: Decodable {
     func get(_ completion: @escaping (Result<DataType>) -> Void) {
-        guard let request = URLRequest(with: endpoint, params: params?.dictionary) else {
+        guard let request = URLRequest(with: endpoint, params: params) else {
             fatalError()
         }
         

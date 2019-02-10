@@ -15,20 +15,13 @@ struct FindParams {
 }
 
 struct FindService: Gettable {
+    typealias DataType = Find
     
     let endpoint: BaseURL & Endpoint
-    var params: Encodable?
+    var params: Params = Params()
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
         self.endpoint = endpoint
-    }
-    
-    init() {
-        self.init(endpoint: FindEndpoint.find)
-    }
-    
-    func get(_ completion: @escaping (Result<Find>) -> Void) {
-        // TODO: Get Method implementation
     }
 }

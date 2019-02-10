@@ -40,15 +40,15 @@ class MoviesViewController: BaseViewController<MoviesView> {
     // MARK: - Setup & Configuration
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Upcomming Movies"
         setupView()
         bindViewModel()
         genresViewModel.fetchGenres()
         moviesViewModel.fetchMovies(page: 2)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        title = "Upcomming Movies"
     }
     
     private func bindViewModel() {
@@ -70,7 +70,17 @@ class MoviesViewController: BaseViewController<MoviesView> {
 }
 
 // MARK: - MoviesSearchResultsDelegate
-extension MoviesViewController: MoviesSearchResultsDelegate {
+extension MoviesViewController: MoviesCollectionViewDelegate {
+    func collectionView(didSelectItemAt indexPath: IndexPath) {
+        let movies = moviesViewModel.movies.value
+        guard movies.indices.contains(indexPath.row) else { return }
+        
+        let movie = movies[indexPath.row]
+        let movieDetailsViewController = MovieDetailsViewController(for: movie, with: configuration)
+        title = ""
+        navigationController?.pushViewController(movieDetailsViewController, animated: true)
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // Do something
     }

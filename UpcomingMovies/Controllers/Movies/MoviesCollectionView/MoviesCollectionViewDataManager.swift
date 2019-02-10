@@ -9,6 +9,10 @@
 
 import UIKit
 
+protocol MoviesCollectionViewDelegate: MoviesSearchResultsDelegate {
+    func collectionView(didSelectItemAt indexPath: IndexPath)
+}
+
 class MoviesCollectionViewDataManager: NSObject {
     private let configuration: Configurable
     private let imagesSize: Images.Size = .w92
@@ -19,7 +23,7 @@ class MoviesCollectionViewDataManager: NSObject {
     private var moviesSectionHeader: String?
     private weak var collectionView: UICollectionView?
     
-    public weak var delegate: MoviesSearchResultsDelegate?
+    public weak var delegate: MoviesCollectionViewDelegate?
     
     // MARK: - Initialization
     required init(with configuration: Configurable) {
@@ -73,5 +77,9 @@ extension MoviesCollectionViewDataManager: UICollectionViewDelegateFlowLayout {
         var size = imagesSize.size
         size.height = size.height + 44
         return size
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        delegate?.collectionView(didSelectItemAt: indexPath)
     }
 }
