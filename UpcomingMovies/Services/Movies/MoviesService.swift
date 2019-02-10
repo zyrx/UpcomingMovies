@@ -17,7 +17,7 @@ struct MoviesService: Gettable {
     typealias DataType = MoviesUpcomingResponse
     
     let endpoint: BaseURL & Endpoint
-    var params: Encodable? = MoviesUpcomingParams()
+    var params: Params = Params(query: MoviesUpcomingParams())
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {

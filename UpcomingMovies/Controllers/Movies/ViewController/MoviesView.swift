@@ -17,7 +17,6 @@ class MoviesView: UIView {
         return searchBar
     }()
     
-    //public lazy var tableView = MoviesTableView()
     public lazy var collectionView = MoviesCollectionView()
 
     // MARK: - Initialization
@@ -52,7 +51,11 @@ class MoviesView: UIView {
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(searchBar.snp.bottom)
-            make.leading.trailing.bottom.equalToSuperview()
+            if #available(iOS 11, *) {
+                make.leading.trailing.bottom.equalTo(safeAreaLayoutGuide)
+            } else {
+                make.leading.trailing.bottom.equalToSuperview()
+            }
         }
     }
 }

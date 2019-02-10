@@ -18,21 +18,13 @@ struct MultiSearchParams {
 }
 
 struct MultiSearchService: Gettable {
+    typealias DataType = MultiSearchResult
     
     let endpoint: BaseURL & Endpoint
-    var params: Encodable?
+    var params: Params = Params()
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
         self.endpoint = endpoint
-    }
-    
-    init() {
-        self.init(endpoint: SearchEndpoint.multiSearch)
-    }
-    
-    
-    func get(_ completion: @escaping (Result<MultiSearch>) -> Void) {
-        // TODO: Get Method implementation
     }
 }

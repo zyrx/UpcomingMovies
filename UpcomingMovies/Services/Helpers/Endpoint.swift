@@ -15,9 +15,10 @@ protocol Endpoint {
 }
 
 protocol BaseURL {
-    var baseUrl: String { get }
-    var serviceUrl: URL? { get }
     var apiKey: String { get }
+    var baseUrl: String { get }
+    //var serviceUrl: URL? { get }
+    func serviceUrl(with params: Encodable?) -> URL?
 }
 
 protocol MovieDatabaseApiEndpoint: Endpoint, BaseURL { }
@@ -31,7 +32,14 @@ extension MovieDatabaseApiEndpoint {
         return "1f54bd990f1cdfb230adb312546d765d"
     }
     
-    var serviceUrl: URL? {
-        return URL(string: baseUrl + path)
+    func serviceUrl(with params: Encodable?) -> URL? {
+        guard let params = params?.dictionary else {
+            return URL(string: baseUrl + path)
+        }
+        var pathString = path
+        for (key, value) in params {
+            pathString = pathString.replacingOccurrences(of: "{\(key)}", with: "\(value)")
+        }
+        return URL(string: baseUrl + pathString)
     }
 }
