@@ -13,7 +13,7 @@ struct Movie: Codable {
     // Movie Details
     var adult: Bool
     var backdropPath: String?
-    var belongsToCollection: String?
+    var belongsToCollection: Collection?
     var budget: Int?
     var genres: [Genre]?
     var homepage: String?

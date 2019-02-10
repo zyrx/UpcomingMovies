@@ -17,7 +17,7 @@ struct ConfigurationService: Gettable {
     typealias DataType = ConfigurationResponse
     
     let endpoint: BaseURL & Endpoint
-    var params: Encodable?
+    var params: Params = Params()
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {

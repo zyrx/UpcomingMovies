@@ -20,21 +20,13 @@ struct SearchMoviesParams {
 }
 
 struct SearchMoviesService: Gettable {
+    typealias DataType = SearchMoviesResult
     
     let endpoint: BaseURL & Endpoint
-    var params: Encodable?
+    var params: Params = Params()
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
         self.endpoint = endpoint
-    }
-    
-    init() {
-        self.init(endpoint: SearchEndpoint.movies)
-    }
-    
-    
-    func get(_ completion: @escaping (Result<SearchMovies>) -> Void) {
-        // TODO: Get Method implementation
     }
 }

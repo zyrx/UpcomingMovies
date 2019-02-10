@@ -29,5 +29,7 @@ class MoviesCollectionView: UICollectionView {
 
     private func setupView() {
         backgroundColor = .white
+        showsHorizontalScrollIndicator = false
+        showsVerticalScrollIndicator = false
     }
 }

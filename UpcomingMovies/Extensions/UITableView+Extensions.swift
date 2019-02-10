@@ -12,8 +12,20 @@ import UIKit
 // MARK: UITableViewCell
 public extension UITableView {
     @discardableResult
-    final public func register<T: UITableViewCell>(withClass cellClass: T.Type) -> UITableView {
-        register(cellClass, forCellReuseIdentifier: cellClass.identifier)
+    final public func register<T: UITableViewCell>(cell: T.Type) -> UITableView {
+        register(cell, forCellReuseIdentifier: cell.identifier)
         return self
+    }
+    
+    final public func dequeueReusableCell<T: UITableViewCell>(_ cell: T.Type = T.self,
+                                                              style: UITableViewCell.CellStyle = .default,
+                                                              for indexPath: IndexPath? = nil,
+                                                              configure: ((T) -> Void)? = nil) -> T {
+        guard let cell = dequeueReusableCell(withIdentifier: T.identifier) as? T else {
+            let cell = T(style: style, reuseIdentifier: T.identifier)
+            configure?(cell)
+            return cell
+        }
+        return cell
     }
 }

@@ -17,7 +17,7 @@ struct GenresService: Gettable {
     typealias DataType = GenresResponse
     
     let endpoint: BaseURL & Endpoint
-    var params: Encodable? = GenresParams()
+    var params: Params = Params(query: GenresParams())
     
     // MARK: - Initialization
     init(endpoint: Endpoint & BaseURL) {
