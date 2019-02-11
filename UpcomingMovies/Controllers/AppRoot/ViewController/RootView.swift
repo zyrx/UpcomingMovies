@@ -10,12 +10,20 @@
 import UIKit
 
 class RootView: UIView {
-    public lazy var activityIndicator = UIActivityIndicatorView(style: .gray)
-    private lazy var loadingLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.text = "Loading..."
-        return label
+    private lazy var loadingView: LoadingView = LoadingView()
+    public lazy var activityIndicator: UIActivityIndicatorView = loadingView.activityIndicator
+    private lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "Background")
+        return imageView
+    }()
+    
+    private lazy var logoImageview: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.image = UIImage(named: "Logo")
+        return imageView
     }()
     
     // MARK: - Initialization
@@ -35,17 +43,20 @@ class RootView: UIView {
     
     // MARK: - Configuration
     private func setupView() {
-        // Activity Indicator
-        addSubview(activityIndicator)
-        activityIndicator.snp.makeConstraints { make in
-            make.centerX.equalTo(snp.centerX).offset(-(activityIndicator.bounds.height / 2))
-            make.centerY.equalToSuperview()
+        addSubview(backgroundImageView)
+        backgroundImageView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
         
-        addSubview(loadingLabel)
-        loadingLabel.snp.makeConstraints { make in
-            make.top.equalTo(activityIndicator.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview()
+        addSubview(logoImageview)
+        logoImageview.snp.makeConstraints { make in
+            make.width.height.equalTo(128)
+            make.center.equalToSuperview()
+        }
+        
+        addSubview(loadingView)
+        loadingView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
         }
     }
 
