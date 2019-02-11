@@ -10,7 +10,7 @@
 import UIKit
 
 protocol MoviesCollectionViewDelegate: MoviesSearchResultsDelegate {
-    func collectionView(didSelectItemAt indexPath: IndexPath)
+    func moviesCollectionView(didSelectItemAt indexPath: IndexPath)
 }
 
 class MoviesCollectionViewDataManager: NSObject {
@@ -23,6 +23,7 @@ class MoviesCollectionViewDataManager: NSObject {
     private var moviesSectionHeader: String?
     private weak var collectionView: UICollectionView?
     
+    public var totalItems: Int { return moviesModel.count }
     public weak var delegate: MoviesCollectionViewDelegate?
     
     // MARK: - Initialization
@@ -41,7 +42,13 @@ class MoviesCollectionViewDataManager: NSObject {
     
     public func setMoviesModel(_ models: [Movie]) {
         moviesModel = models
-        //print(models)
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView?.reloadData()
+        }
+    }
+    
+    public func updateMoviesModel(with models: [Movie]) {
+        moviesModel.append(contentsOf: models)
         DispatchQueue.main.async { [weak self] in
             self?.collectionView?.reloadData()
         }
@@ -49,10 +56,14 @@ class MoviesCollectionViewDataManager: NSObject {
     
     public func setGenresModel(_ models: [Genre]) {
         genresModel = models
-        //print(models)
         DispatchQueue.main.async { [weak self] in
             self?.collectionView?.reloadData()
         }
+    }
+    
+    public func getModel(for indexPath: IndexPath) -> Movie? {
+        guard moviesModel.indices.contains(indexPath.row) else { return nil }
+        return moviesModel[indexPath.row]
     }
 }
 
@@ -80,6 +91,16 @@ extension MoviesCollectionViewDataManager: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        delegate?.collectionView(didSelectItemAt: indexPath)
+        delegate?.moviesCollectionView(didSelectItemAt: indexPath)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.scrollViewDidScroll(scrollView)
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        delegate?.scrollViewWillEndDragging(scrollView, withVelocity: velocity, targetContentOffset: targetContentOffset)
     }
 }
