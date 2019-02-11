@@ -41,7 +41,9 @@ class RootViewController: BaseViewController<RootView> {
         mainView.activityIndicator.stopAnimating()
     }
     
-    private func setupView() {}
+    private func setupView() {
+        
+    }
     
     private func bindViewModel() {
         viewModel.configuration.bind { configuration in
