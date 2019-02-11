@@ -73,7 +73,6 @@ class MovieDetailsViewController: BaseViewController<MovieDetailsView> {
         }
         
         let image = (size: Images.Size.w300, url: configuration.images.secureBaseUrl)
-        
         if let backdropPath = movie.backdropPath,
             let url = URL(string: image.url + image.size.name + backdropPath) {
             DispatchQueue.main.async { [weak self] in

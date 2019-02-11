@@ -22,6 +22,7 @@ class MoviesCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -68,9 +69,12 @@ class MoviesCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configuration
     public func updateWith(model: Movie, image: MoviesCollectionViewCellImage) {
+        let placeholder = UIImage(named: "PlaceholderW300")
         if let posterPath = model.posterPath,
             let url = URL(string: image.url + image.size.name + posterPath) {
-            imageView.kf.setImage(with: url)
+            imageView.kf.setImage(with: url, placeholder: placeholder)
+        } else {
+            imageView.image = placeholder
         }
         titleLabel.text = model.title
         releaseDateLabel.text = "[\(model.releaseDate)]"

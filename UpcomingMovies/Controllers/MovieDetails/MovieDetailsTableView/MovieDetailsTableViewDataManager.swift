@@ -48,9 +48,7 @@ extension MovieDetailsTableViewDataManager: UITableViewDataSource {
         
         guard indexPath.row != 0 else {
             let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-            if let imageUrl = setMovieDetailsImageUrl {
-                cell.imageView?.kf.setImage(with: imageUrl)
-            }
+            cell.imageView?.kf.setImage(with: setMovieDetailsImageUrl, placeholder: UIImage(named: "PlaceholderW92"))
             cell.selectionStyle = .none
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.text = details.title

@@ -44,17 +44,6 @@ extension Images {
         
         var name: String {
             return rawValue
-//            switch self {
-//            case .original: return "original"
-//            case .w45:      return "w45"
-//            case .w92:      return "w92"
-//            case .w154:     return "w154"
-//            case .w185:     return "w185"
-//            case .w300:     return "w300"
-//            case .w342:     return "w342"
-//            case .w500:     return "w500"
-//            case .w780:     return "w780"
-//            }
         }
         
         var size: CGSize {

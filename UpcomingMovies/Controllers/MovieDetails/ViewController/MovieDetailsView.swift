@@ -31,7 +31,7 @@ class MovieDetailsView: UIView {
     
     lazy var backdropImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor(white: 0.9, alpha: 1)
+        imageView.image = UIImage(named: "PlaceholderW300")
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
