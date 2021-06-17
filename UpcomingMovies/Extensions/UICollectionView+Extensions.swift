@@ -12,7 +12,7 @@ import UIKit
 // MARK: UITableViewCell
 public extension UICollectionView {
     @discardableResult
-    final public func register<T: UICollectionViewCell>(withClass cellClass: T.Type) -> UICollectionView {
+    final func register<T: UICollectionViewCell>(withClass cellClass: T.Type) -> UICollectionView {
         register(cellClass, forCellWithReuseIdentifier: cellClass.identifier)
         return self
     }

@@ -88,7 +88,8 @@ class MoviesViewController: BaseViewController<MoviesView>, UISearchBarDelegate 
         viewDataManager.delegate = self
         viewDataManager.setup(collectionView: collectionView)
         if let navigationBar = navigationController?.navigationBar {
-            navigationBar.barStyle = .blackTranslucent
+            navigationBar.barStyle = .black
+            navigationBar.isTranslucent = true
             navigationBar.tintColor = .white
         }
     }
