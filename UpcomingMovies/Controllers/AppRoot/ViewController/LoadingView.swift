@@ -9,7 +9,7 @@
 import UIKit
 
 class LoadingView: UIView {
-    public lazy var activityIndicator = UIActivityIndicatorView(style: .white)
+    public lazy var activityIndicator = UIActivityIndicatorView(style: .medium)
     private lazy var loadingLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center

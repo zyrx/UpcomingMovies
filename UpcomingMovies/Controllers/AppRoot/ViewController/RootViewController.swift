@@ -55,6 +55,7 @@ class RootViewController: BaseViewController<RootView> {
                 let moviesViewController = MoviesViewController(with: configuration)
                 let moviesNavigationController = UINavigationController(rootViewController: moviesViewController)
                 moviesNavigationController.modalTransitionStyle = .crossDissolve
+                moviesNavigationController.modalPresentationStyle = .fullScreen
                 self?.present(moviesNavigationController, animated: true, completion: nil)
             }
         }
