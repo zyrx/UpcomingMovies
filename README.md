@@ -17,13 +17,7 @@ We're using [Carthage](https://github.com/Carthage/Carthage) as a _decentralized
 
 
 ## Preview
-### Launch Screen
-![um_launchscreen](https://user-images.githubusercontent.com/1212083/52572222-4f238780-2de5-11e9-93f1-103e87f2d39c.png)
-### Movie Details
-![um_moviedetails](https://user-images.githubusercontent.com/1212083/52572223-4f238780-2de5-11e9-8896-1035ebc46c6d.png)
-### Search Movies
-![um_searchmovies](https://user-images.githubusercontent.com/1212083/52572224-4f238780-2de5-11e9-8be9-327e2fd1e80f.png)
-### Upcoming Movies
-![um_upcomingmovies](https://user-images.githubusercontent.com/1212083/52572226-4f238780-2de5-11e9-8bd7-f96fdf9ba82a.png)
 
-
+|   Launch Screen   |    Movie Details    | Search Movies | Upcoming Movies |
+|-------------------|---------------------|---------------|-----------------|
+| ![um_launchscreen](https://user-images.githubusercontent.com/1212083/52572222-4f238780-2de5-11e9-93f1-103e87f2d39c.png) | ![um_moviedetails](https://user-images.githubusercontent.com/1212083/52572223-4f238780-2de5-11e9-8896-1035ebc46c6d.png) | ![um_searchmovies](https://user-images.githubusercontent.com/1212083/52572224-4f238780-2de5-11e9-8be9-327e2fd1e80f.png) | ![um_upcomingmovies](https://user-images.githubusercontent.com/1212083/52572226-4f238780-2de5-11e9-8bd7-f96fdf9ba82a.png) |
