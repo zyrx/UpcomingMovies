@@ -1,15 +1,26 @@
 # UpcomingMovies
 App prototype for cinephiles and movie hobbyists.
 
+## Project Generation
+We're using [Tuist](https://docs.tuist.io/tutorial/get-started) command line tool to facilitate the project's generation.
+To install tuist run the following command in your terminal:
+```
+curl -Ls https://install.tuist.io | bash
+```
+To generate the project you just have to run the following command from the project root directory:
+```
+tuist generate
+```
+
 ## Dependency Manager
-We're using [Carthage](https://github.com/Carthage/Carthage) as a _decentralized_ dependency manager.
-+ Run `carthage update`. This will fetch dependencies into a [Carthage/Checkouts](https://github.com/Carthage/Carthage/blob/master/Documentation/Artifacts.md#carthagecheckouts) folder and build each one or download a pre-compiled framework.
+We're using [Swift Package Manager](https://www.swift.org/package-manager/) the dependency manager, however since [Tuist](https://tuist.io/) is used to generate the project, in order to fetch the dependencies you might need to run the following command from the project root directory:
+```
+tuist fetch
+```
 
 ### Libraries
 + [SnapKit](https://github.com/SnapKit/SnapKit) A Swift Autolayout DSL for iOS & OS X.
 + [Kingfisher](https://github.com/onevcat/Kingfisher) A lightweight, pure-Swift library for downloading and caching images from the web.
-+ [Quick](https://github.com/Quick/Quick) The Swift (and Objective-C) testing framework.
-+ [Nimble](https://github.com/Quick/Nimble) A Matcher Framework for Swift and Objective-C.
 
 ## Copyright
 * Copyright (C) 2019 Open Source Matters. All rights reserved.
